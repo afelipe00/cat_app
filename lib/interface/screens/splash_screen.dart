@@ -1,10 +1,24 @@
-import 'package:cat_app/config/constants/routes.dart';
+import 'package:cat_app/bloc/bloc.dart';
 import 'package:cat_app/interface/widgets/circle_ripple_button.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  late CatBloc catBloc;
+
+  @override
+  void initState() {
+    catBloc = BlocProvider.of<CatBloc>(context);
+    catBloc.add(InitAppEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +50,6 @@ class SplashScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        context.push(AppRoutes.home);
-      }),
     );
   }
 }
