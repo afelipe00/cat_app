@@ -1,0 +1,43 @@
+import 'package:cat_app/config/constants/constants.dart';
+import 'package:cat_app/interface/screens/screens.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+final _rootNavigatorKey = GlobalKey<NavigatorState>();
+
+final router = GoRouter(
+  initialLocation: AppRoutes.home,
+  routes: [
+    StatefulShellRoute.indexedStack(
+      parentNavigatorKey: _rootNavigatorKey,
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.home,
+              pageBuilder: (context, state) => const MaterialPage(
+                child: HomeScreen(),
+              ),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.profile,
+              pageBuilder: (context, state) => const MaterialPage(
+                child: HomeScreen(),
+              ),
+            ),
+          ],
+        ),
+      ],
+      builder: (context, state, navigationShell) {
+        return NavigatorScreen(
+          key: state.pageKey,
+          navigationShell: navigationShell,
+        );
+      },
+    )
+  ],
+);
