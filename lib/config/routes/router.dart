@@ -22,6 +22,16 @@ final router = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
+              path: AppRoutes.random,
+              pageBuilder: (context, state) => const MaterialPage(
+                child: RandomScreen(),
+              ),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
               path: AppRoutes.home,
               pageBuilder: (context, state) => const MaterialPage(
                 child: HomeScreen(),
@@ -35,16 +45,6 @@ final router = GoRouter(
               path: AppRoutes.profile,
               pageBuilder: (context, state) => const MaterialPage(
                 child: ProfileScreen(),
-              ),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: AppRoutes.random,
-              pageBuilder: (context, state) => const MaterialPage(
-                child: RandomScreen(),
               ),
             ),
           ],
