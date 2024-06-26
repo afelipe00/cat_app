@@ -1,6 +1,8 @@
+import 'package:cat_app/config/constants/constants.dart';
 import 'package:cat_app/interface/widgets/widgets.dart';
 import 'package:cat_app/resources/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -95,7 +97,12 @@ class HomeScreen extends StatelessWidget {
                 (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-                    child: CarCardWidget(),
+                    child: InkWell(
+                      onTap: () {
+                        context.push("${AppRoutes.home}/${AppRoutes.catDetail}");
+                      },
+                      child: CarCardWidget(),
+                    ),
                   );
                 },
                 childCount: 2,

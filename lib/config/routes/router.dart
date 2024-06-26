@@ -36,6 +36,14 @@ final router = GoRouter(
               pageBuilder: (context, state) => const MaterialPage(
                 child: HomeScreen(),
               ),
+              routes: [
+                GoRoute(
+                  path: AppRoutes.catDetail,
+                  pageBuilder: (context, state) => const MaterialPage(
+                    child: CatDetailScreen(),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
