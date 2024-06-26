@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class RandomScreen extends StatelessWidget {
+  const RandomScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Placeholder(
-      color: Colors.blue,
+      color: Colors.red,
     );
   }
 }
