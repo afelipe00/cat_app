@@ -1,5 +1,4 @@
 import 'package:cat_app/config/constants/constants.dart';
-import 'package:cat_app/interface/screens/profile_screen.dart';
 import 'package:cat_app/interface/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

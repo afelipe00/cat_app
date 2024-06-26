@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
-    double expandedHeight = 180.0; // TODO reviar si debe estar acá
+    double expandedHeight = 180.0; // TODO revisar si debe estar acá
     double collapsedHeight = 60.0;
     final ThemeData theme = Theme.of(context);
 
@@ -101,7 +101,7 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         context.push("${AppRoutes.home}/${AppRoutes.catDetail}");
                       },
-                      child: CarCardWidget(),
+                      child: const CarCardWidget(),
                     ),
                   );
                 },

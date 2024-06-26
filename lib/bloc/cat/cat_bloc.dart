@@ -9,8 +9,6 @@ class CatBloc extends Bloc<CatEvent, CatState> {
   final NavigatorCubit navigator;
 
   CatBloc({required this.navigator}) : super(CatInitial()) {
-    on<CatEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<CatEvent>((event, emit) {});
   }
 }
