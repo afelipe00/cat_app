@@ -1,4 +1,5 @@
 import 'package:cat_app/bloc/bloc.dart';
+import 'package:cat_app/config/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,14 +33,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var router = context.watch<NavigatorCubit>().state.router;
+    TextTheme textTheme = createTextTheme(context, "Lato", "Noto Sans");
+    MaterialTheme theme = MaterialTheme(textTheme);
+    final brightness = View.of(context).platformDispatcher.platformBrightness;
+
     return MaterialApp.router(
       title: 'The Cat App',
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: brightness == Brightness.light ? theme.light() : theme.dark(),
     );
   }
 }
