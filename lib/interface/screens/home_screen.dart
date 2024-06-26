@@ -1,3 +1,4 @@
+import 'package:cat_app/interface/widgets/widgets.dart';
 import 'package:cat_app/resources/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -43,8 +44,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               centerTitle: true,
-              floating: true,
-              snap: true,
+              stretch: true,
               pinned: true,
               expandedHeight: expandedHeight,
               collapsedHeight: collapsedHeight,
@@ -88,10 +88,20 @@ class HomeScreen extends StatelessWidget {
             )
           ];
         },
-        body: Container(
-          child: const Center(
-            child: Text('Home Screen'),
-          ),
+        body: CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                    child: CarCardWidget(),
+                  );
+                },
+                childCount: 2,
+              ),
+            ),
+          ],
         ),
       ),
     );
