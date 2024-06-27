@@ -40,21 +40,35 @@ class CatDetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Center(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(14.0),
-                    child: Image.network(
-                      cat.url!,
-                      fit: BoxFit.cover,
-                      width: size.width * 0.98,
-                      height: size.height * 0.35,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Center(
-                          child: Icon(
-                            Icons.error,
-                            color: Colors.red,
-                          ),
-                        );
-                      },
+                  child: Hero(
+                    tag: 'cat$index',
+                    flightShuttleBuilder: (
+                      BuildContext flightContext,
+                      Animation<double> animation,
+                      HeroFlightDirection flightDirection,
+                      BuildContext fromHeroContext,
+                      BuildContext toHeroContext,
+                    ) {
+                      return SingleChildScrollView(
+                        child: fromHeroContext.widget,
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(14.0),
+                      child: Image.network(
+                        cat.url!,
+                        fit: BoxFit.cover,
+                        width: size.width * 0.98,
+                        height: size.height * 0.35,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Center(
+                            child: Icon(
+                              Icons.error,
+                              color: Colors.red,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),

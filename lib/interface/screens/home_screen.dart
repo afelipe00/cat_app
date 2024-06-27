@@ -131,9 +131,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             context.push("${AppRoutes.home}/${AppRoutes.catDetail}/$index");
                           },
-                          child: CarCardWidget(
-                            isNetworkImage: isLoading ? false : true,
-                            cat: cats[index],
+                          child: Hero(
+                            tag: 'cat$index',
+                            child: CarCardWidget(
+                              isNetworkImage: isLoading ? false : true,
+                              cat: cats[index],
+                            ),
                           ),
                         ),
                       );
