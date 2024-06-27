@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final double expandedHeight = 180.0;
   final double collapsedHeight = 60.0;
   bool isLoading = false;
-  List<Cat> breeds = [];
+  List<Cat> cats = [];
 
   @override
   void initState() {
@@ -38,7 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (catBloc.state is CatLoaded) {
       final CatLoaded catLoaded = catBloc.state as CatLoaded;
-      breeds = catLoaded.cats;
+      cats = catLoaded.cats;
+    } else if (catBloc.state is CatInitial) {
+      cats = [
+        Cat(),
+        Cat(),
+      ];
     }
 
     return Scaffold(
@@ -127,12 +132,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             context.push("${AppRoutes.home}/${AppRoutes.catDetail}");
                           },
                           child: CarCardWidget(
-                            cat: breeds[index],
+                            isNetworkImage: isLoading ? false : true,
+                            cat: cats[index],
                           ),
                         ),
                       );
                     },
-                    childCount: breeds.length,
+                    childCount: cats.length,
                   ),
                 ),
               ],

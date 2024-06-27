@@ -2,10 +2,12 @@ import 'package:cat_app/resources/models/cat.dart';
 import 'package:flutter/material.dart';
 
 class CarCardWidget extends StatelessWidget {
+  final bool isNetworkImage;
   final Cat cat;
   const CarCardWidget({
     super.key,
     required this.cat,
+    this.isNetworkImage = true,
   });
 
   @override
@@ -13,19 +15,34 @@ class CarCardWidget extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(12.0),
-              topRight: Radius.circular(12.0),
+          isNetworkImage
+              ? ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(12.0),
+                    topRight: Radius.circular(12.0),
+                  ),
+                  child: Image.network(
+                    cat.url ?? '',
+                    fit: BoxFit.cover,
+                  ),
+                )
+              : ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(12.0),
+                    topRight: Radius.circular(12.0),
+                  ),
+                  child: Image.asset(
+                    'assets/images/cat1_bg.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+          ListTile(
+            title: Text(
+              cat.breeds?[0].name ?? 'Unknown',
             ),
-            child: Image.network(
-              cat.url ?? '',
-              fit: BoxFit.cover,
+            subtitle: Text(
+              cat.breeds?[0].origin ?? 'Unknown',
             ),
-          ),
-          const ListTile(
-            title: Text('Cat'),
-            subtitle: Text('This is a cat breed'),
           ),
         ],
       ),
