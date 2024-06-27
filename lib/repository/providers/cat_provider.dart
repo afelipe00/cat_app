@@ -3,7 +3,9 @@ import 'package:cat_app/repository/models/models.dart';
 import 'package:cat_app/repository/services/cat_service.dart';
 
 class CatProvider {
-  final _catService = CatService();
+  final CatService _catService;
+
+  CatProvider(CatService catService) : _catService = catService;
 
   Future<List<CatModel>> fetchCatBreed({
     int limit = 10,

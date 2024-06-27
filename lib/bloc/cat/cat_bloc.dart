@@ -2,6 +2,7 @@ import 'package:cat_app/bloc/navigator/navigator_cubit.dart';
 import 'package:cat_app/config/constants/constants.dart';
 import 'package:cat_app/repository/models/cat_model.dart';
 import 'package:cat_app/repository/providers/cat_provider.dart';
+import 'package:cat_app/repository/services/services.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
@@ -11,7 +12,7 @@ part 'cat_state.dart';
 
 class CatBloc extends Bloc<CatEvent, CatState> {
   final NavigatorCubit navigator;
-  final CatProvider _catProvider = CatProvider();
+  final CatProvider _catProvider = CatProvider(CatService());
 
   CatBloc({required this.navigator}) : super(const CatInitial()) {
     on<InitAppEvent>(_onInitAppEvent);
