@@ -27,7 +27,7 @@ final class CatError extends CatState {
 }
 
 final class CatLoaded extends CatState {
-  final List<Cat> cats;
+  final List<CatModel> cats;
 
   const CatLoaded({required this.cats, required super.status});
 

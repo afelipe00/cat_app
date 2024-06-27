@@ -1,13 +1,13 @@
-import 'package:cat_app/repository/models/breed.dart';
+import 'package:cat_app/repository/models/breed_model.dart';
 
-class Cat {
+class CatModel {
   final String? id;
   final String? url;
   final int? width;
   final int? height;
-  final List<Breed> breeds;
+  final List<BreedModel> breeds;
 
-  Cat({
+  CatModel({
     this.id,
     this.url,
     this.width,
@@ -15,24 +15,24 @@ class Cat {
     this.breeds = const [],
   });
 
-  factory Cat.fromJson(Map<String, dynamic> json) {
-    return Cat(
+  factory CatModel.fromJson(Map<String, dynamic> json) {
+    return CatModel(
       id: json['id'],
       url: json['url'],
       width: json['width'],
       height: json['height'],
-      breeds: json['breeds'] != null ? List<Breed>.from(json['breeds'].map((x) => Breed.fromJson(x))) : [],
+      breeds: json['breeds'] != null ? List<BreedModel>.from(json['breeds'].map((x) => BreedModel.fromJson(x))) : [],
     );
   }
 
-  Cat copyWith({
+  CatModel copyWith({
     String? id,
     String? url,
     int? width,
     int? height,
-    List<Breed>? breeds,
+    List<BreedModel>? breeds,
   }) {
-    return Cat(
+    return CatModel(
       id: id ?? this.id,
       url: url ?? this.url,
       width: width ?? this.width,

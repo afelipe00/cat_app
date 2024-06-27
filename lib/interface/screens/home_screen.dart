@@ -1,7 +1,7 @@
 import 'package:cat_app/bloc/bloc.dart';
 import 'package:cat_app/config/constants/constants.dart';
 import 'package:cat_app/interface/widgets/widgets.dart';
-import 'package:cat_app/repository/models/cat.dart';
+import 'package:cat_app/repository/models/cat_model.dart';
 import 'package:cat_app/repository/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
   String searchQuery = '';
   bool isLoading = true;
-  List<Cat> cats = [];
+  List<CatModel> cats = [];
 
   @override
   void initState() {
@@ -33,8 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
       page: 0,
     ));
     cats = [
-      Cat(),
-      Cat(),
+      CatModel(),
+      CatModel(),
     ];
     super.initState();
   }

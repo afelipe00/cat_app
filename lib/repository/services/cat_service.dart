@@ -1,10 +1,10 @@
 import 'package:cat_app/config/constants/enums.dart';
-import 'package:cat_app/repository/models/breed.dart';
-import 'package:cat_app/repository/models/cat.dart';
+import 'package:cat_app/repository/models/breed_model.dart';
+import 'package:cat_app/repository/models/cat_model.dart';
 import 'package:cat_app/repository/services/http_service.dart';
 
 class CatService {
-  Future<List<Cat>> getCatBreed({
+  Future<List<CatModel>> getCatBreed({
     int limit = 10,
     GetCatMode? order,
     int page = 0,
@@ -22,15 +22,15 @@ class CatService {
         'has_breeds': 'true',
       },
     );
-    final List<Cat> breeds = [];
+    final List<CatModel> breeds = [];
     for (final breed in response.data) {
-      breeds.add(Cat.fromJson(breed));
+      breeds.add(CatModel.fromJson(breed));
     }
     return breeds;
   }
 
-  Future<List<Cat>> searchCatBreeds(String query) async {
-    final List<Cat> cats = [];
+  Future<List<CatModel>> searchCatBreeds(String query) async {
+    final List<CatModel> cats = [];
     final response = await HttpService().syncEndpoint(
       method: HttpMethod.get,
       endpoint: '/breeds/search',
@@ -39,9 +39,9 @@ class CatService {
         'attach_image': '1',
       },
     );
-    final List<Breed> breeds = [];
+    final List<BreedModel> breeds = [];
     for (final breed in response.data) {
-      breeds.add(Breed.fromJson(breed));
+      breeds.add(BreedModel.fromJson(breed));
     }
     if (breeds.isNotEmpty) {
       for (final breed in breeds) {
@@ -50,7 +50,7 @@ class CatService {
           endpoint: '/images/${breed.referenceImageId}',
         );
         if (response.data is Map) {
-          cats.add(Cat.fromJson(response.data));
+          cats.add(CatModel.fromJson(response.data));
         }
       }
     } else {

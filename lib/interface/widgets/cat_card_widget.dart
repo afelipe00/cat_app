@@ -1,9 +1,9 @@
-import 'package:cat_app/repository/models/cat.dart';
+import 'package:cat_app/repository/models/cat_model.dart';
 import 'package:flutter/material.dart';
 
 class CarCardWidget extends StatelessWidget {
   final bool isNetworkImage;
-  final Cat cat;
+  final CatModel cat;
   const CarCardWidget({
     super.key,
     required this.cat,
