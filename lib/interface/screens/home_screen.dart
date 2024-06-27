@@ -129,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
                         child: InkWell(
                           onTap: () {
-                            context.push("${AppRoutes.home}/${AppRoutes.catDetail}");
+                            context.push("${AppRoutes.home}/${AppRoutes.catDetail}/$index");
                           },
                           child: CarCardWidget(
                             isNetworkImage: isLoading ? false : true,

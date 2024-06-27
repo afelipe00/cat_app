@@ -42,10 +42,13 @@ final router = GoRouter(
               ),
               routes: [
                 GoRoute(
-                  path: AppRoutes.catDetail,
-                  pageBuilder: (context, state) => const MaterialPage(
-                    child: CatDetailScreen(),
-                  ),
+                  path: "${AppRoutes.catDetail}/:index",
+                  pageBuilder: (context, state) {
+                    final index = int.parse(state.pathParameters['index']!);
+                    return MaterialPage(
+                      child: CatDetailScreen(index: index),
+                    );
+                  },
                 ),
               ],
             ),
