@@ -19,7 +19,7 @@ final class FetchCatEvent extends CatEvent {
 final class SearchCatEvent extends CatEvent {
   final String query;
 
-  const SearchCatEvent(this.query);
+  const SearchCatEvent({required this.query});
 
   @override
   List<Object> get props => [query];

@@ -15,6 +15,7 @@ class CatBloc extends Bloc<CatEvent, CatState> {
   CatBloc({required this.navigator}) : super(const CatInitial()) {
     on<InitAppEvent>(_onInitAppEvent);
     on<FetchCatEvent>(_onFetchCatEvent);
+    on<SearchCatEvent>(_onSearchCatEvent);
   }
 
   void _onInitAppEvent(InitAppEvent event, Emitter<CatState> emit) async {
@@ -26,6 +27,12 @@ class CatBloc extends Bloc<CatEvent, CatState> {
 
   void _onFetchCatEvent(FetchCatEvent event, Emitter<CatState> emit) async {
     List<Cat> req = await _catService.getCatBreeds();
+    emit(CatLoaded(cats: req, status: APIStatus.success));
+  }
+
+  void _onSearchCatEvent(SearchCatEvent event, Emitter<CatState> emit) async {
+    emit(const CatLoading());
+    List<Cat> req = await _catService.searchCatBreeds(event.query);
     emit(CatLoaded(cats: req, status: APIStatus.success));
   }
 }

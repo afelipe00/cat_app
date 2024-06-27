@@ -74,6 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Container(
                   padding: const EdgeInsets.all(10.0),
                   child: TextField(
+                    onChanged: (query) {
+                      catBloc.add(SearchCatEvent(query: query));
+                    },
                     decoration: InputDecoration(
                       hintText: 'Search',
                       prefixIcon: const Icon(Icons.search),
@@ -103,6 +106,10 @@ class _HomeScreenState extends State<HomeScreen> {
               cats = state.cats;
               setState(() {
                 isLoading = false;
+              });
+            } else if (state is CatLoading) {
+              setState(() {
+                isLoading = true;
               });
             }
           },
