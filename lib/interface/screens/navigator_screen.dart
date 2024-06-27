@@ -11,7 +11,7 @@ class NavigatorScreen extends StatefulWidget {
 }
 
 class _NavigatorScreenState extends State<NavigatorScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
