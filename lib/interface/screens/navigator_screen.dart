@@ -11,28 +11,38 @@ class NavigatorScreen extends StatefulWidget {
 }
 
 class _NavigatorScreenState extends State<NavigatorScreen> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     return Scaffold(
       body: widget.navigationShell,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: widget.navigationShell.currentIndex,
-        onTap: (index) => widget.navigationShell.goBranch(
-          index,
-          initialLocation: index == widget.navigationShell.currentIndex,
-        ),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.radio_button_off_rounded),
-            label: 'Random',
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: widget.navigationShell.currentIndex,
+        onDestinationSelected: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+          widget.navigationShell.goBranch(
+            index,
+            initialLocation: index == widget.navigationShell.currentIndex,
+          );
+        },
+        indicatorColor: colors.primaryContainer,
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        destinations: [
+          const NavigationDestination(
+            icon: Icon(Icons.screen_rotation_alt_rounded),
+            label: "Random",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+          NavigationDestination(
+            icon: Icon(_selectedIndex == 1 ? Icons.home : Icons.home_outlined),
+            label: "Home",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'User',
+          NavigationDestination(
+            icon: Icon(_selectedIndex == 2 ? Icons.person_rounded : Icons.person_outline_rounded),
+            label: "Profile",
           ),
         ],
       ),
