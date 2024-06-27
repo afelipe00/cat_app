@@ -123,33 +123,42 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             }
           },
-          child: Skeletonizer(
-            enabled: isLoading,
-            child: CustomScrollView(
-              slivers: [
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-                        child: InkWell(
-                          onTap: () {
-                            context.push("${AppRoutes.home}/${AppRoutes.catDetail}/$index");
-                          },
-                          child: Hero(
-                            tag: 'cat$index',
-                            child: CarCardWidget(
-                              isNetworkImage: isLoading ? false : true,
-                              cat: cats[index],
+          child: RefreshIndicator(
+            onRefresh: () {
+              catBloc.add(const FetchCatEvent(
+                order: GetCatMode.descendent,
+                page: 0,
+              ));
+              return Future.delayed(const Duration(seconds: 1));
+            },
+            child: Skeletonizer(
+              enabled: isLoading,
+              child: CustomScrollView(
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                          child: InkWell(
+                            onTap: () {
+                              context.push("${AppRoutes.home}/${AppRoutes.catDetail}/$index");
+                            },
+                            child: Hero(
+                              tag: 'cat$index',
+                              child: CarCardWidget(
+                                isNetworkImage: isLoading ? false : true,
+                                cat: cats[index],
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                    childCount: cats.length,
+                        );
+                      },
+                      childCount: cats.length,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
