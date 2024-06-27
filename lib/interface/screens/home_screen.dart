@@ -28,7 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     catBloc = BlocProvider.of<CatBloc>(context);
-    catBloc.add(const FetchCatEvent());
+    catBloc.add(const FetchCatEvent(
+      order: GetCatMode.descendent,
+      page: 0,
+    ));
     cats = [
       Cat(),
       Cat(),
@@ -76,7 +79,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: TextField(
                     onChanged: (query) {
                       if (query.isEmpty || query == "") {
-                        catBloc.add(const FetchCatEvent());
+                        catBloc.add(const FetchCatEvent(
+                          order: GetCatMode.descendent,
+                          page: 0,
+                        ));
                       } else if (query.length > 2) {
                         catBloc.add(SearchCatEvent(query: query));
                       }

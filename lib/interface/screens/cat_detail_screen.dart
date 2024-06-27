@@ -29,13 +29,13 @@ class CatDetailScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  cat.breeds?.first.name ?? 'Unknown Breed',
+                  cat.breeds.first.name ?? 'Unknown Breed',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                 ),
                 Text(
-                  cat.breeds?.first.origin.toString() ?? "",
+                  cat.breeds.first.origin.toString(),
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 10),
@@ -86,7 +86,7 @@ class CatDetailScreen extends StatelessWidget {
                               width: size.width * 0.3,
                               onPressed: () {},
                               child: Text(
-                                cat.breeds?.first.intelligence.toString() ?? "",
+                                cat.breeds.first.intelligence.toString(),
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       color: colors.onPrimary,
                                       fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class CatDetailScreen extends StatelessWidget {
                               label: 'health issues',
                               width: size.width * 0.3,
                               child: Text(
-                                cat.breeds?.first.healthIssues.toString() ?? "",
+                                cat.breeds.first.healthIssues.toString(),
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       color: colors.onPrimary,
                                       fontWeight: FontWeight.bold,
@@ -109,7 +109,7 @@ class CatDetailScreen extends StatelessWidget {
                               label: 'adaptability',
                               width: size.width * 0.3,
                               child: Text(
-                                cat.breeds?.first.adaptability.toString() ?? "",
+                                cat.breeds.first.adaptability.toString(),
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       color: colors.onPrimary,
                                       fontWeight: FontWeight.bold,
@@ -122,7 +122,7 @@ class CatDetailScreen extends StatelessWidget {
                         ListTile(
                           contentPadding: EdgeInsets.zero,
                           title: const Text('Description'),
-                          subtitle: Text(cat.breeds?.first.description ?? ""),
+                          subtitle: Text(cat.breeds.first.description ?? ""),
                         ),
                         const SizedBox(height: 20),
                         Text(
@@ -143,7 +143,7 @@ class CatDetailScreen extends StatelessWidget {
                             child: const Icon(Icons.favorite),
                           ),
                           title: const Text('Life Span'),
-                          subtitle: Text(cat.breeds?.first.lifeSpan ?? ""),
+                          subtitle: Text(cat.breeds.first.lifeSpan ?? ""),
                         ),
                         ListTile(
                           contentPadding: EdgeInsets.zero,
@@ -157,7 +157,7 @@ class CatDetailScreen extends StatelessWidget {
                             child: const Icon(Icons.bolt_rounded),
                           ),
                           title: const Text('Energy Level'),
-                          subtitle: Text(cat.breeds?.first.energyLevel.toString() ?? ""),
+                          subtitle: Text(cat.breeds.first.energyLevel.toString()),
                         ),
                         ListTile(
                           contentPadding: EdgeInsets.zero,
@@ -171,7 +171,7 @@ class CatDetailScreen extends StatelessWidget {
                             child: const Icon(Icons.pets),
                           ),
                           title: const Text('Social Needs'),
-                          subtitle: Text(cat.breeds?.first.socialNeeds.toString() ?? ""),
+                          subtitle: Text(cat.breeds.first.socialNeeds.toString()),
                         ),
                       ],
                     ),

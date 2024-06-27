@@ -27,7 +27,11 @@ class CatBloc extends Bloc<CatEvent, CatState> {
   }
 
   void _onFetchCatEvent(FetchCatEvent event, Emitter<CatState> emit) async {
-    List<Cat> req = await _catService.getCatBreeds();
+    List<Cat> req = await _catService.getCatBreed(
+      limit: event.limit,
+      order: event.order,
+      page: event.page,
+    );
     emit(CatLoaded(cats: req, status: APIStatus.success));
   }
 

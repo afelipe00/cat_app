@@ -1,16 +1,21 @@
+import 'package:cat_app/config/constants/enums.dart';
 import 'package:cat_app/resources/models/breed.dart';
 import 'package:cat_app/resources/models/cat.dart';
 import 'package:cat_app/resources/services/http_service.dart';
 
 class CatService {
-  Future<List<Cat>> getCatBreeds() async {
+  Future<List<Cat>> getCatBreed({
+    int limit = 10,
+    GetCatMode? order,
+    int page = 0,
+  }) async {
     final response = await HttpService().syncEndpoint(
       method: HttpMethod.get,
       endpoint: '/images/search',
       params: {
-        'limit': '10',
-        'page': '0',
-        'order': 'RANDOM',
+        'limit': limit.toString(),
+        'page': page.toString(),
+        'order': order == GetCatMode.descendent ? 'DESC' : 'RANDOM',
         'size': 'med',
         'mime_types': 'jpg',
         'format': 'json',

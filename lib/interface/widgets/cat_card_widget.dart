@@ -38,10 +38,10 @@ class CarCardWidget extends StatelessWidget {
                 ),
           ListTile(
             title: Text(
-              cat.breeds?[0].name ?? 'Unknown',
+              cat.breeds.isNotEmpty ? cat.breeds.first.name! : 'Unknown',
             ),
             subtitle: Text(
-              cat.breeds?[0].origin ?? 'Unknown',
+              cat.breeds.isNotEmpty ? cat.breeds.first.origin! : 'Unknown',
             ),
           ),
         ],

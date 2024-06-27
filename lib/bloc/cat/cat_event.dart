@@ -10,7 +10,14 @@ sealed class CatEvent extends Equatable {
 final class InitAppEvent extends CatEvent {}
 
 final class FetchCatEvent extends CatEvent {
-  const FetchCatEvent();
+  final int limit;
+  final GetCatMode order;
+  final int page;
+  const FetchCatEvent({
+    this.order = GetCatMode.random,
+    this.page = 0,
+    this.limit = 10,
+  });
 
   @override
   List<Object> get props => [];

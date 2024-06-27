@@ -5,14 +5,14 @@ class Cat {
   final String? url;
   final int? width;
   final int? height;
-  final List<Breed>? breeds;
+  final List<Breed> breeds;
 
   Cat({
     this.id,
     this.url,
     this.width,
     this.height,
-    this.breeds,
+    this.breeds = const [],
   });
 
   factory Cat.fromJson(Map<String, dynamic> json) {
@@ -21,7 +21,7 @@ class Cat {
       url: json['url'],
       width: json['width'],
       height: json['height'],
-      breeds: json['breeds'] != null ? List<Breed>.from(json['breeds'].map((x) => Breed.fromJson(x))) : null,
+      breeds: json['breeds'] != null ? List<Breed>.from(json['breeds'].map((x) => Breed.fromJson(x))) : [],
     );
   }
 
@@ -47,7 +47,7 @@ class Cat {
       'url': url,
       'width': width,
       'height': height,
-      'breed': breeds?.map((x) => x.toJson()).toList(),
+      'breed': breeds.map((x) => x.toJson()).toList(),
     };
   }
 }

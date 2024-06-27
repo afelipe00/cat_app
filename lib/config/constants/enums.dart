@@ -4,3 +4,8 @@ enum APIStatus {
   success,
   error,
 }
+
+enum GetCatMode {
+  descendent,
+  random,
+}
