@@ -47,7 +47,7 @@ class CatModel {
       'url': url,
       'width': width,
       'height': height,
-      'breed': breeds.map((x) => x.toJson()).toList(),
+      'breeds': breeds.map((x) => x.toJson()).toList(),
     };
   }
 }
