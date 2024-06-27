@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
             height: size.height * 0.4,
             width: size.width,
             decoration: BoxDecoration(
-              color: colors.primaryContainer,
+              color: themeProvider.themePreference == ThemePreference.light ? colors.primary : colors.primaryContainer,
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(42),
                 bottomRight: Radius.circular(42),
@@ -35,7 +35,9 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   child: CircleAvatar(
                     radius: 50,
-                    backgroundColor: colors.primary,
+                    backgroundColor: themeProvider.themePreference == ThemePreference.light
+                        ? colors.primaryContainer
+                        : colors.primary,
                     backgroundImage: const NetworkImage("https://picsum.photos/200/300.jpg"),
                   ),
                 ),
@@ -43,14 +45,18 @@ class ProfileScreen extends StatelessWidget {
                 Text(
                   'Username',
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: colors.onPrimaryContainer,
+                        color: themeProvider.themePreference == ThemePreference.light
+                            ? colors.onPrimary
+                            : colors.onPrimaryContainer,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
                 Text(
                   'profile description here',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: colors.onPrimaryContainer,
+                        color: themeProvider.themePreference == ThemePreference.light
+                            ? colors.onPrimary
+                            : colors.onPrimaryContainer,
                       ),
                 ),
                 Row(
@@ -59,14 +65,18 @@ class ProfileScreen extends StatelessWidget {
                     IconButton(
                       icon: Icon(
                         Icons.edit,
-                        color: colors.onPrimaryContainer,
+                        color: themeProvider.themePreference == ThemePreference.light
+                            ? colors.onPrimary
+                            : colors.onPrimaryContainer,
                       ),
                       onPressed: () {},
                     ),
                     IconButton(
                       icon: Icon(
                         Icons.settings,
-                        color: colors.onPrimaryContainer,
+                        color: themeProvider.themePreference == ThemePreference.light
+                            ? colors.onPrimary
+                            : colors.onPrimaryContainer,
                       ),
                       onPressed: () {},
                     ),
