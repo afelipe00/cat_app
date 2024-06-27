@@ -62,7 +62,7 @@ class HttpService {
   }) async {
     Response response;
     final uri = Uri(path: endpoint, queryParameters: params);
-    debugInterceptor();
+    //debugInterceptor();
     switch (method) {
       case HttpMethod.get:
         response = await dio.getUri(uri, data: data);
@@ -82,35 +82,35 @@ class HttpService {
     return response;
   }
 
-  void debugInterceptor() {
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
-        // Esto se ejecuta antes de enviar la petición
-        print('Petición: ${options.method} ${options.uri}');
-        print('Headers enviados: ${options.headers}');
-        print('Parametros enviados: ${options.queryParameters}');
-        print('Body enviado: ${options.data}');
-        // Permitir continuar con la petición
-        return handler.next(options); // continue
-      },
-      onResponse: (Response response, ResponseInterceptorHandler handler) {
-        // Esto se ejecuta cuando se recibe una respuesta
-        print('Respuesta recibida: ${response.statusCode}');
-        print('Headers de la respuesta: ${response.headers}');
-        print('Datos de la respuesta: ${response.data}');
-        // Permitir continuar con la respuesta
-        return handler.next(response); // continue
-      },
-      onError: (DioError e, ErrorInterceptorHandler handler) {
-        // Esto se ejecuta cuando ocurre un error
-        print('Error en la petición: ${e.message}');
-        if (e.response != null) {
-          print('Headers de la respuesta con error: ${e.response?.headers}');
-          print('Datos de la respuesta con error: ${e.response?.data}');
-        }
-        // Permitir continuar con el error
-        return handler.next(e); // continue
-      },
-    ));
-  }
+  // void debugInterceptor() {
+  //   dio.interceptors.add(InterceptorsWrapper(
+  //     onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
+  //       // Esto se ejecuta antes de enviar la petición
+  //       print('Petición: ${options.method} ${options.uri}');
+  //       print('Headers enviados: ${options.headers}');
+  //       print('Parámetros enviados: ${options.queryParameters}');
+  //       print('Body enviado: ${options.data}');
+  //       // Permitir continuar con la petición
+  //       return handler.next(options); // continue
+  //     },
+  //     onResponse: (Response response, ResponseInterceptorHandler handler) {
+  //       // Esto se ejecuta cuando se recibe una respuesta
+  //       print('Respuesta recibida: ${response.statusCode}');
+  //       print('Headers de la respuesta: ${response.headers}');
+  //       print('Datos de la respuesta: ${response.data}');
+  //       // Permitir continuar con la respuesta
+  //       return handler.next(response); // continue
+  //     },
+  //     onError: (DioError e, ErrorInterceptorHandler handler) {
+  //       // Esto se ejecuta cuando ocurre un error
+  //       print('Error en la petición: ${e.message}');
+  //       if (e.response != null) {
+  //         print('Headers de la respuesta con error: ${e.response?.headers}');
+  //         print('Datos de la respuesta con error: ${e.response?.data}');
+  //       }
+  //       // Permitir continuar con el error
+  //       return handler.next(e); // continue
+  //     },
+  //   ));
+  // }
 }
