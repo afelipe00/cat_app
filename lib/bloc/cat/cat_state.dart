@@ -13,6 +13,19 @@ final class CatInitial extends CatState {
   const CatInitial() : super(status: APIStatus.loading);
 }
 
+final class CatLoading extends CatState {
+  const CatLoading() : super(status: APIStatus.loading);
+}
+
+final class CatError extends CatState {
+  final String message;
+
+  const CatError({required this.message, required super.status});
+
+  @override
+  List<Object> get props => [message];
+}
+
 final class CatLoaded extends CatState {
   final List<Cat> cats;
 

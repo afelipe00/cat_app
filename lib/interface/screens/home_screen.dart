@@ -20,14 +20,19 @@ class _HomeScreenState extends State<HomeScreen> {
   late CatBloc catBloc;
   final double expandedHeight = 180.0;
   final double collapsedHeight = 60.0;
-  bool isLoading = false;
+  final TextEditingController searchController = TextEditingController();
+  String searchQuery = '';
+  bool isLoading = true;
   List<Cat> cats = [];
 
   @override
   void initState() {
     catBloc = BlocProvider.of<CatBloc>(context);
-    isLoading = catBloc.state.status == APIStatus.loading;
     catBloc.add(const FetchCatEvent());
+    cats = [
+      Cat(),
+      Cat(),
+    ];
     super.initState();
   }
 
@@ -35,16 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final ThemeData theme = Theme.of(context);
-
-    if (catBloc.state is CatLoaded) {
-      final CatLoaded catLoaded = catBloc.state as CatLoaded;
-      cats = catLoaded.cats;
-    } else if (catBloc.state is CatInitial) {
-      cats = [
-        Cat(),
-        Cat(),
-      ];
-    }
 
     return Scaffold(
       body: NestedScrollView(
@@ -104,15 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         body: BlocListener<CatBloc, CatState>(
           listener: (context, state) {
-            final APIStatus catStatus = state.status;
-            if (catStatus == APIStatus.loading) {
-              setState(() {
-                isLoading = true;
-              });
-              if (state is CatInitial && catStatus == APIStatus.loading) {
-                catBloc.add(const FetchCatEvent());
-              }
-            } else {
+            if (state is CatLoaded) {
+              cats = state.cats;
               setState(() {
                 isLoading = false;
               });
