@@ -75,7 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(10.0),
                   child: TextField(
                     onChanged: (query) {
-                      catBloc.add(SearchCatEvent(query: query));
+                      if (query.isEmpty || query == "") {
+                        catBloc.add(const FetchCatEvent());
+                      } else if (query.length > 2) {
+                        catBloc.add(SearchCatEvent(query: query));
+                      }
                     },
                     decoration: InputDecoration(
                       hintText: 'Search',
