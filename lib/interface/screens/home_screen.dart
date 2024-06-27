@@ -4,6 +4,7 @@ import 'package:cat_app/interface/widgets/widgets.dart';
 import 'package:cat_app/resources/models/cat.dart';
 import 'package:cat_app/resources/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -43,71 +44,105 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final ThemeData theme = Theme.of(context);
+    final ColorScheme colors = theme.colorScheme;
+    double triggerChangeColor = 30.0;
 
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
-            SliverAppBar(
-              title: Text(
-                'Catbreeds',
-                style: theme.textTheme.titleLarge!.copyWith(
-                  color: Colors.white,
-                ),
-              ),
-              centerTitle: true,
-              stretch: true,
-              pinned: true,
-              expandedHeight: expandedHeight,
-              collapsedHeight: collapsedHeight,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Container(
-                  color: Colors.black,
-                  child: Opacity(
-                    opacity: 0.5,
-                    child: Image.asset(
-                      'assets/images/cat1_bg.jpg',
-                      fit: BoxFit.cover,
-                    ),
+            SliverLayoutBuilder(builder: (context, constraints) {
+              return SliverAppBar(
+                title: Text(
+                  'Catbreeds',
+                  style: theme.textTheme.titleLarge!.copyWith(
+                    color: themeProvider.themePreference == ThemePreference.light
+                        ? constraints.scrollOffset > triggerChangeColor
+                            ? colors.onPrimaryContainer
+                            : colors.onPrimary
+                        : null,
                   ),
                 ),
-              ),
-              bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(50.0),
-                child: Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    onChanged: (query) {
-                      if (query.isEmpty || query == "") {
-                        catBloc.add(const FetchCatEvent(
-                          order: GetCatMode.descendent,
-                          page: 0,
-                        ));
-                      } else if (query.length > 2) {
-                        catBloc.add(SearchCatEvent(query: query));
-                      }
-                    },
-                    decoration: InputDecoration(
-                      hintText: 'Search',
-                      prefixIcon: const Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
+                centerTitle: true,
+                stretch: true,
+                pinned: true,
+                expandedHeight: expandedHeight,
+                collapsedHeight: collapsedHeight,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Container(
+                    color: Colors.black,
+                    child: Opacity(
+                      opacity: 0.5,
+                      child: Image.asset(
+                        'assets/images/cat1_bg.jpg',
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                 ),
-              ),
-              actions: [
-                IconButton(
-                  icon: Icon(
-                    themeProvider.themePreference == ThemePreference.light ? Icons.light_mode : Icons.dark_mode,
+                actions: [
+                  IconButton(
+                    icon: Icon(
+                      themeProvider.themePreference == ThemePreference.light ? Icons.light_mode : Icons.dark_mode,
+                      color: themeProvider.themePreference == ThemePreference.light
+                          ? constraints.scrollOffset > triggerChangeColor
+                              ? colors.onPrimaryContainer
+                              : colors.onPrimary
+                          : null,
+                    ),
+                    onPressed: () {
+                      themeProvider.toggleTheme();
+                    },
                   ),
-                  onPressed: () {
-                    themeProvider.toggleTheme();
-                  },
+                ],
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(50.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextField(
+                      onChanged: (query) {
+                        if (query.isEmpty || query == "") {
+                          catBloc.add(const FetchCatEvent(
+                            order: GetCatMode.descendent,
+                            page: 0,
+                          ));
+                        } else if (query.length > 2) {
+                          catBloc.add(SearchCatEvent(query: query));
+                        }
+                      },
+                      style: TextStyle(
+                        color: themeProvider.themePreference == ThemePreference.light
+                            ? constraints.scrollOffset > triggerChangeColor
+                                ? colors.onPrimaryContainer
+                                : colors.onPrimary
+                            : null,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: 'Search',
+                        hintStyle: theme.textTheme.bodyLarge!.copyWith(
+                          color: themeProvider.themePreference == ThemePreference.light
+                              ? constraints.scrollOffset > triggerChangeColor
+                                  ? colors.onPrimaryContainer
+                                  : colors.onPrimary
+                              : null,
+                        ),
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: themeProvider.themePreference == ThemePreference.light
+                              ? constraints.scrollOffset > triggerChangeColor
+                                  ? colors.onPrimaryContainer
+                                  : colors.outline
+                              : null,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ],
-            )
+              );
+            })
           ];
         },
         body: BlocListener<CatBloc, CatState>(
