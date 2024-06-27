@@ -1,4 +1,4 @@
-import 'package:cat_app/resources/providers/theme_provider.dart';
+import 'package:cat_app/repository/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

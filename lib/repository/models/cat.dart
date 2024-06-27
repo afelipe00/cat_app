@@ -1,4 +1,4 @@
-import 'package:cat_app/resources/models/breed.dart';
+import 'package:cat_app/repository/models/breed.dart';
 
 class Cat {
   final String? id;

@@ -1,7 +1,7 @@
 import 'package:cat_app/bloc/bloc.dart';
 import 'package:cat_app/config/constants/constants.dart';
 import 'package:cat_app/interface/widgets/widgets.dart';
-import 'package:cat_app/resources/models/cat.dart';
+import 'package:cat_app/repository/models/cat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';

@@ -1,7 +1,7 @@
 import 'package:cat_app/bloc/navigator/navigator_cubit.dart';
 import 'package:cat_app/config/constants/constants.dart';
-import 'package:cat_app/resources/models/cat.dart';
-import 'package:cat_app/resources/services/services.dart';
+import 'package:cat_app/repository/models/cat.dart';
+import 'package:cat_app/repository/services/services.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';

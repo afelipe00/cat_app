@@ -1,4 +1,4 @@
-import 'package:cat_app/resources/models/cat.dart';
+import 'package:cat_app/repository/models/cat.dart';
 import 'package:flutter/material.dart';
 
 class CarCardWidget extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:cat_app/config/constants/enums.dart';
-import 'package:cat_app/resources/models/breed.dart';
-import 'package:cat_app/resources/models/cat.dart';
-import 'package:cat_app/resources/services/http_service.dart';
+import 'package:cat_app/repository/models/breed.dart';
+import 'package:cat_app/repository/models/cat.dart';
+import 'package:cat_app/repository/services/http_service.dart';
 
 class CatService {
   Future<List<Cat>> getCatBreed({
