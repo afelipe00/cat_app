@@ -4,6 +4,7 @@ import 'package:cat_app/resources/models/cat.dart';
 import 'package:cat_app/resources/services/services.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'cat_event.dart';
 part 'cat_state.dart';
@@ -15,7 +16,7 @@ class CatBloc extends Bloc<CatEvent, CatState> {
   CatBloc({required this.navigator}) : super(const CatInitial()) {
     on<InitAppEvent>(_onInitAppEvent);
     on<FetchCatEvent>(_onFetchCatEvent);
-    on<SearchCatEvent>(_onSearchCatEvent);
+    on<SearchCatEvent>(_onSearchCatEvent, transformer: _debounce());
   }
 
   void _onInitAppEvent(InitAppEvent event, Emitter<CatState> emit) async {
@@ -34,5 +35,9 @@ class CatBloc extends Bloc<CatEvent, CatState> {
     emit(const CatLoading());
     List<Cat> req = await _catService.searchCatBreeds(event.query);
     emit(CatLoaded(cats: req, status: APIStatus.success));
+  }
+
+  EventTransformer<SearchCatEvent> _debounce<SearchCatEvent>() {
+    return (events, mapper) => events.debounceTime(const Duration(milliseconds: 500)).switchMap(mapper);
   }
 }
