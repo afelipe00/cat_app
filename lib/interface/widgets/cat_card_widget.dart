@@ -1,8 +1,11 @@
+import 'package:cat_app/resources/models/cat.dart';
 import 'package:flutter/material.dart';
 
 class CarCardWidget extends StatelessWidget {
+  final Cat cat;
   const CarCardWidget({
     super.key,
+    required this.cat,
   });
 
   @override
@@ -15,8 +18,8 @@ class CarCardWidget extends StatelessWidget {
               topLeft: Radius.circular(12.0),
               topRight: Radius.circular(12.0),
             ),
-            child: Image.asset(
-              'assets/images/cat1_bg.jpg',
+            child: Image.network(
+              cat.url ?? '',
               fit: BoxFit.cover,
             ),
           ),

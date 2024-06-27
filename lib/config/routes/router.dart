@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final _navigatorKey = GlobalKey<NavigatorState>();
+final _navigatorKey2 = GlobalKey<NavigatorState>();
+final _navigatorKey3 = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
   initialLocation: AppRoutes.baseRoute,
@@ -19,6 +22,7 @@ final router = GoRouter(
       parentNavigatorKey: _rootNavigatorKey,
       branches: [
         StatefulShellBranch(
+          navigatorKey: _navigatorKey3,
           routes: [
             GoRoute(
               path: AppRoutes.random,
@@ -29,6 +33,7 @@ final router = GoRouter(
           ],
         ),
         StatefulShellBranch(
+          navigatorKey: _navigatorKey,
           routes: [
             GoRoute(
               path: AppRoutes.home,
@@ -47,6 +52,7 @@ final router = GoRouter(
           ],
         ),
         StatefulShellBranch(
+          navigatorKey: _navigatorKey2,
           routes: [
             GoRoute(
               path: AppRoutes.profile,

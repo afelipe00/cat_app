@@ -1,6 +1,7 @@
 import 'package:cat_app/bloc/bloc.dart';
 import 'package:cat_app/config/constants/constants.dart';
 import 'package:cat_app/interface/widgets/widgets.dart';
+import 'package:cat_app/resources/models/cat.dart';
 import 'package:cat_app/resources/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final double expandedHeight = 180.0;
   final double collapsedHeight = 60.0;
   bool isLoading = false;
+  List<Cat> breeds = [];
 
   @override
   void initState() {
@@ -33,6 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final ThemeData theme = Theme.of(context);
+
+    if (catBloc.state is CatLoaded) {
+      final CatLoaded catLoaded = catBloc.state as CatLoaded;
+      breeds = catLoaded.cats;
+    }
 
     return Scaffold(
       body: NestedScrollView(
@@ -119,11 +126,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             context.push("${AppRoutes.home}/${AppRoutes.catDetail}");
                           },
-                          child: const CarCardWidget(),
+                          child: CarCardWidget(
+                            cat: breeds[index],
+                          ),
                         ),
                       );
                     },
-                    childCount: 2,
+                    childCount: breeds.length,
                   ),
                 ),
               ],

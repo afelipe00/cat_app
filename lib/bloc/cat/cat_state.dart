@@ -14,7 +14,7 @@ final class CatInitial extends CatState {
 }
 
 final class CatLoaded extends CatState {
-  final List<Breed> cats;
+  final List<Cat> cats;
 
   const CatLoaded({required this.cats, required super.status});
 

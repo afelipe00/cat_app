@@ -3,9 +3,11 @@ import 'package:cat_app/config/themes/themes.dart';
 import 'package:cat_app/resources/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   runApp(
     const BlocProviders(),
   );
