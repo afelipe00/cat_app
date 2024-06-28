@@ -1,4 +1,4 @@
-import 'package:cat_app/repository/services/http_service.dart';
+import 'package:cat_app/repository/services/services.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockHttpService extends Mock implements HttpService {}
+class MockCatService extends Mock implements CatService {}
