@@ -1,16 +1,23 @@
-# cat_app
+# CAT_APP
+Proyecto de Flutter para mostrar el amor a los gatos, permitiendo encontrar nuevas razas y características de gatos. 
 
-A new Flutter project.
+## Features
+Este proyecto
+
+### Paquetes
+- **flutter_bloc:** Gestor de estados para manejar la lógica de negocio de la app.
+- **equatable:** Facilita la comparación de objetos para determinar si son iguales, optimizando la gestión de los estados del BloC.
+- **go_router:** Facilita el uso del Navegador 2.0
+- **dio:** Librería HTTP optimizada en rendimiento, que permite una mejor configuración y manejo de los queries. 
+- **google_fonts:** Facilita el uso de fuentes libre suministradas por Google.
+- **shared_preferences:** Permite almacenar de forma permanente la preferencias del usuario en la app.
+- **skeletonizer:** Facilita el uso de animaciones de carga.
+- **flutter_dotenv:** Facilita el uso de variables de entorno.
+- **rxdart:** Le agrega más características al uso de Stream.
+
+## Usage
+
+## Installation
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
